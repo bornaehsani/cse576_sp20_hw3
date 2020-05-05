@@ -166,7 +166,31 @@ Matrix backward_lrelu(const Matrix &out, const Matrix &prev_grad) {
 Matrix forward_softmax(const Matrix &matrix) {
   Matrix activated = matrix;
   // TODO: Implement forward activation.
-  NOT_IMPLEMENTED();
+
+
+  for (int y = 0; y < matrix.rows; y ++) {
+
+    // find largest exponent
+    double max_e = matrix(y, 0);
+    for (int x = 0; x < matrix.cols; x ++) {
+      max_e = max (max_e, matrix(y, x));
+    }
+
+    // Calculate sum of row
+    double sum = 0.0;
+    for (int x = 0; x < matrix.cols; x ++) {
+      double v = std::exp (matrix(y, x) - max_e);
+      activated(y, x) = v;
+      sum += v;
+    }
+
+    for (int x = 0; x < matrix.cols; x ++) {
+      activated(y, x) /= sum;
+    }
+  }
+
+
+
   return activated;
 }
 
