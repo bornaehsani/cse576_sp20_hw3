@@ -135,7 +135,13 @@ Matrix backward_relu(const Matrix &out, const Matrix &prev_grad) {
 Matrix forward_lrelu(const Matrix &matrix) {
   Matrix activated = matrix;
   // TODO: Implement forward activation.
-  NOT_IMPLEMENTED();
+
+  for (int y = 0; y < matrix.rows; y ++) {
+    for (int x = 0; x < matrix.cols; x ++) {
+        activated(y,x) = (matrix(y, x) < 0.0) ? ( 0.01 * matrix(y, x)) : matrix(y, x);
+    }
+  }
+
   return activated;
 }
 
