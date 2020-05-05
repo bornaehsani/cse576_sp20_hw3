@@ -103,7 +103,13 @@ Matrix backward_tanh(const Matrix &out, const Matrix &prev_grad) {
 Matrix forward_relu(const Matrix &matrix) {
   // TODO: Implement forward activation.
   Matrix activated = matrix;
-  NOT_IMPLEMENTED();
+
+  for (int y = 0; y < matrix.rows; y ++) {
+    for (int x = 0; x < matrix.cols; x ++) {
+      activated(y, x) = max (0.0, matrix(y,x));
+    }
+  }
+
   return activated;
 }
 
