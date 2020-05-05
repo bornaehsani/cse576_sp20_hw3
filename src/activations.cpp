@@ -13,8 +13,6 @@
 //  A Matrix containing the activated output.
 Matrix forward_linear(const Matrix &matrix) {
   Matrix activated = matrix;
-  // TODO: Implement forward activation.
-  NOT_IMPLEMENTED();
   return activated;
 }
 
@@ -41,7 +39,13 @@ Matrix forward_logistic(const Matrix &matrix) {
   Matrix activated = matrix;
   // TODO: Implement forward activation.
   // Hint: look at matrix.h, it might save you some typing.
-  NOT_IMPLEMENTED();
+
+  for (int y = 0; y < matrix.rows; y ++) {
+    for (int x = 0; x < matrix.cols; x ++) {
+      activated(y, x) = 1 / ( 1 + std::exp( - matrix(y,x)));
+    }
+  }
+
   return activated;
 }
 
