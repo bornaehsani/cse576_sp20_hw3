@@ -71,7 +71,13 @@ Matrix backward_logistic(const Matrix &out, const Matrix &prev_grad) {
 Matrix forward_tanh(const Matrix &matrix) {
   Matrix activated = matrix;
   // TODO: Implement forward activation.
-  NOT_IMPLEMENTED();
+  
+  for (int y = 0; y < matrix.rows; y ++) {
+    for (int x = 0; x < matrix.cols; x ++) {
+      activated(y, x) = tanh(matrix(y,x));
+    }
+  }
+  
   return activated;
 }
 
