@@ -31,7 +31,8 @@ void debug_print(const char *name, const Matrix &m, int max_rows = 2, int max_co
 Matrix forward_weights(const Layer &l, const Matrix &in) {
   Matrix output;
   // TODO: Multiply input by weights and return the result
-  NOT_IMPLEMENTED();
+
+  output = in * l.w;
 
   assert(output.rows == in.rows);
   assert(output.cols == l.w.cols);
@@ -45,7 +46,8 @@ Matrix forward_activation(const Layer &l, const Matrix &out1) {
   Matrix output;
   // TODO: Apply activation function and return
   // Hint: Use forward_activate_matrix in activations.cpp.
-  NOT_IMPLEMENTED();
+
+  output = forward_activate_matrix( l.in, l.activation);
 
   return output;
 }
@@ -73,6 +75,7 @@ Matrix Layer::forward(const Matrix &in) {
 // returns: Matrix, partial derivative of loss w.r.t. input to (xw)
 Matrix backward_xw(const Layer &l, const Matrix &grad_y) {
   Matrix grad_xw;
+  printf("Test\n");
   // TODO (1.4.1): compute dL/d(xw) and return it
   // Hint:
   //  grad_y is dL/dy
@@ -80,7 +83,10 @@ Matrix backward_xw(const Layer &l, const Matrix &grad_y) {
   //           = dL/dy * df(xw)/d(xw)
   //           = dL/dy * f'(xw)
   // Hint: Use backward_activate_matrix in activations.cpp.
-  NOT_IMPLEMENTED();
+
+  // borna 
+  Matrix fp_xw = backward_activate_matrix (l.out2, l.grad_out1, l.activation);
+  grad_xw = grad_y * fp_xw;
 
   return grad_xw;
 }
