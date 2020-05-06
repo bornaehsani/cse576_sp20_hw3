@@ -236,7 +236,7 @@ Matrix softmax_jacobian(const Matrix &out_row) {
     for (int x = 0; x < out_row.cols; x ++) {
       // jacobian(j, k) = ...
       if (y == x) {
-        jacobian (y, x) = out_row(0, x) - (out_row(0, x) * out_row(0, x)); 
+        jacobian (y, x) = out_row(0, x) * (1 - out_row(0, x)); 
       }
       else {
         jacobian (y, x) = - out_row(0, x) * out_row(0, y);
@@ -258,9 +258,21 @@ Matrix backward_softmax(const Matrix &out, const Matrix &prev_grad) {
     Matrix jacobian = softmax_jacobian(out.get_row(i));
     Matrix row_grad = prev_grad.get_row(i);
     // TODO: Implement the softmax backward pass.
-    NOT_IMPLEMENTED();
-    // grad(i, j) = ...
+    // NOT_IMPLEMENTED();
+    // grad(i, j) = ... 
+
+    for (int j = 0; j < grad.cols; j ++) {
+
+      double sum = 0.0;
+
+      for (int k = 0; k < jacobian.cols; k ++) {
+        sum += jacobian(j, k) * row_grad(0, k);
+      }
+
+      grad(i, j) = sum;
+    }
   }
+
   return grad;
 }
 
