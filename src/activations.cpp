@@ -26,7 +26,6 @@ Matrix backward_linear(const Matrix &out, const Matrix &prev_grad) {
   assert_same_size(prev_grad, out);
   Matrix grad = prev_grad;
   // TODO: Implement activation backward pass.
-  NOT_IMPLEMENTED();
   return grad;
 }
 
