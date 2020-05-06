@@ -232,10 +232,15 @@ Matrix softmax_jacobian(const Matrix &out_row) {
   Matrix jacobian(out_row.cols, out_row.cols);
   // TODO: Implement the Jacobian matrix.
   // Do whatever you want here, but here's some structure to get you started.
-  for (int j = 0; j < out_row.cols; j++) {
-    for (int k = 0; k < out_row.cols; k++) {
-      NOT_IMPLEMENTED();
+  for (int y = 0; y < out_row.cols; y ++) {
+    for (int x = 0; x < out_row.cols; x ++) {
       // jacobian(j, k) = ...
+      if (y == x) {
+        jacobian (y, x) = out_row(0, x) - (out_row(0, x) * out_row(0, x)); 
+      }
+      else {
+        jacobian (y, x) = - out_row(0, x) * out_row(0, y);
+      }
     }
   }
   assert(jacobian.rows == out_row.cols);
