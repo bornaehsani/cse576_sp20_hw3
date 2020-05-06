@@ -58,7 +58,13 @@ Matrix backward_logistic(const Matrix &out, const Matrix &prev_grad) {
   assert_same_size(prev_grad, out);
   Matrix grad = prev_grad;
   // TODO: Implement activation backward pass.
-  NOT_IMPLEMENTED();
+
+  for (int y = 0; y < grad.rows; y ++) {
+    for (int x = 0; x < grad.cols; x ++) {
+      grad(y, x) *=( (1 - out(y, x)) * out(y, x));
+    }
+  }
+
   return grad;
 }
 
