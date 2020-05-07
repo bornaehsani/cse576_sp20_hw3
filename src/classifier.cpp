@@ -252,9 +252,14 @@ double l2_loss(const Matrix &y, const Matrix &p) {
   assert_same_size(y, p);
   // TODO
 
-  NOT_IMPLEMENTED();
+  double sum = 0.0;
+  for (int i = 0; i < y.rows; i ++) {
+    for (int j = 0; j < y.cols; j ++) {
+      sum += pow ((y(i, j) - p(i, j)), 2);
+    }
+  }
 
-  return 0;
+  return sum;
 }
 
 // Calculate the L1 loss for a set of predictions
@@ -263,11 +268,15 @@ double l2_loss(const Matrix &y, const Matrix &p) {
 // returns: average L1 loss over data points
 double l1_loss(const Matrix &y, const Matrix &p) {
   assert_same_size(y, p);
-  // TODO
 
-  NOT_IMPLEMENTED();
+  double sum = 0.0;
+  for (int i = 0; i < y.rows; i ++) {
+    for (int j = 0; j < y.cols; j ++) {
+      sum += abs (y(i, j) - p(i, j));
+    }
+  }
 
-  return 0;
+  return sum;
 }
 
 // Calculate the loss for a set of predictions
