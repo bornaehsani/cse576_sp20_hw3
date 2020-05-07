@@ -138,11 +138,16 @@ Matrix Layer::backward(const Matrix &grad_y) {
 void update_layer(Layer &l, double rate, double momentum, double decay) {
   // TODO: calculate the weight updates
   // Hint: Calculate Δw_t = dL/dw_t - λw_t + mΔw_{t-1} and save it to l.v
-  NOT_IMPLEMENTED();
+
+  Matrix t1 = l.grad_w;
+  Matrix t2 = decay * l.w;
+  Matrix t3 = momentum * l.v;
+  Matrix w_t = t1 - t2 + t3;
 
   // TODO: update the weights and save to l.w.
   // Hint: w_{t+1} = w_t + ηΔw_t
-  NOT_IMPLEMENTED();
+  l.v = w_t;
+  l.w = l.w + rate * l.v;  
 }
 
 // DO NOT MODIFY.
