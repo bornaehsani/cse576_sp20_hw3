@@ -112,7 +112,9 @@ Matrix backward_x(const Layer &l) {
   // Get the relevant quantities from the layer (see forward() and backward() function for reference)
   // TODO (1.4.3): finally, calculate dL/dx and return it
   Matrix grad_x;
-  NOT_IMPLEMENTED();
+
+  // borna
+  grad_x = l.grad_out1 * l.w.transpose();
 
   assert_same_size(grad_x, l.in);
   return grad_x;
