@@ -47,7 +47,7 @@ Matrix forward_activation(const Layer &l, const Matrix &out1) {
   // TODO: Apply activation function and return
   // Hint: Use forward_activate_matrix in activations.cpp.
 
-  output = forward_activate_matrix( l.in, l.activation);
+  output = forward_activate_matrix( out1, l.activation);
 
   return output;
 }
