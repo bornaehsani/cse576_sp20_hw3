@@ -84,7 +84,7 @@ Matrix backward_xw(const Layer &l, const Matrix &grad_y) {
   // Hint: Use backward_activate_matrix in activations.cpp.
 
   Matrix fp_xw = backward_activate_matrix (l.out2, grad_y, l.activation);
-  grad_xw = grad_y * fp_xw;
+  grad_xw = elementwise_multiply(grad_y, fp_xw);
 
   return grad_xw;
 }
@@ -98,10 +98,10 @@ Matrix backward_w(const Layer &l) {
   //  dL/dw = d(xw)/dw * dL/d(xw) = x * dL/d(xw)
   Matrix grad_w;
 
+  // TODO borna
   grad_w = l.in.transpose() * l.grad_out1;
   //l.grad_w = grad_w;
 
-  // borna
   assert_same_size(grad_w, l.w);
   return grad_w;
 }
@@ -113,7 +113,6 @@ Matrix backward_x(const Layer &l) {
   // TODO (1.4.3): finally, calculate dL/dx and return it
   Matrix grad_x;
 
-  // borna
   grad_x = l.grad_out1 * l.w.transpose();
 
   assert_same_size(grad_x, l.in);
