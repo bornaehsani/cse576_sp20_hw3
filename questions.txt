@@ -34,39 +34,91 @@ Rate        Training Accuracy        Testing Accuracy
 
 2.3.1 Question
 Q: Currently the model uses a logistic activation for the first layer. Try using all the other activation functions we programmed. How well do they perform? What's best?
-A:
+A: The training and testing accuracy for all activation functions is shown below. The Tanh activation function reaches the highest accuracy.
 
 Activation  Training Accuracy        Testing Accuracy
 -----------------------------------------------------
-Linear      0.                 0.
-Logistic    0.                 0.
-Tanh        0.                 0.
-ReLU        0.                 0.
-LReLU       0.                 0.
-SoftMax     0.                 0.
-
+Linear      0.305783                 0.316300
+Logistic    0.114117                 0.117300
+Tanh        0.283250                 0.292500
+ReLU        0.178717                 0.179300
+LReLU       0.179467                 0.179500
+SoftMax     0.109550                 0.108400
 
 
 2.3.2 Question
 Q: Using the same activation, find the best (power of 10) learning rate for your model. What is the training accuracy and testing accuracy?
-A:
+A: The learning rate of 0.1 yields the highest accuracy.
+
+Rate        Training Accuracy        Testing Accuracy
+-----------------------------------------------------
+0.00001      0.079433                0.077300
+0.0001       0.080083                0.078200
+0.001        0.087976                0.086400
+0.01         0.283250                0.292500
+0.1          0.613417                0.627700
+1            0.104417                0.102800
+
 
 2.3.3 Question
 Q: Right now the regularization parameter `decay` is set to 0. Try adding some decay to your model. What happens, does it help? Why or why not may this be?
-A:
+A: The decay of 0 yields the highest accuracy. 
+
+Decay        Training Accuracy        Testing Accuracy
+-----------------------------------------------------
+0            0.613417                 0.627700
+0.00001      0.612667                 0.627300
+0.0001       0.602850                 0.615300
+0.001        0.437600                 0.440500
+0.01         0.465267                 0.472700
+0.1          0.098717                 0.098000
+1            0.098717                 0.098000
+10           0.098717                 0.098000
+
 
 2.3.4 Question
 Q: Modify your model so it has 3 layers instead of 2. The layers should be `inputs -> 64`, `64 -> 32`, and `32 -> outputs`. Also modify your model to train for 3000 iterations instead of 1000. Look at the training and testing accuracy for different values of decay (powers of 10, 10^-4 -> 10^0). Which is best? Why?
-A:
+A: Decay of 0.00001 yields the highest accuracy, and decay's are larger than 0.01 result in the model failing drastically. 
+
+Decay        Training Accuracy        Testing Accuracy
+-----------------------------------------------------
+0            0.607700                 0.612100
+0.00001      0.608000                 0.613300
+0.0001       0.602917                 0.607700
+0.001        0.543533                 0.549100
+0.01         0.098717                 0.098000
+0.1          0.098717                 0.098000
+1            0.098717                 0.098000
+10           0.098717                 0.098000
+
 
 2.3.5 Question
 Q: Modify your model so it has 4 layers instead of 2. The layers should be `inputs -> 128`, `128 -> 64`, `64 -> 32`, and `32 -> outputs`. Do the same analysis as in 2.3.4.
-A:
+A: Decay of 0 yields the highest accuracy, but as evident by the numbers, Decay's of close to zero result in the same accuracy.
+
+Decay        Training Accuracy        Testing Accuracy
+-----------------------------------------------------
+0            0.601700          0.610000
+0.00001      0.600976          0.607200
+0.0001       0.574133          0.578500
+0.001        0.352283          0.353800
+0.01         0.098717          0.098000
+0.1          0.098717          0.098000
+1            0.098717          0.098000
+10           0.098717          0.098000
+
 
 2.3.6 Question
 Q: Use the 2 layer model with the best activation for layer 1 but linear activation for layer 2. Now implement the functions `l1_loss` and `l2_loss` and change the necessary code in `classifier.cpp` to use these loss functions. Observe the output values and accuracy of the model and write down your observations for both the loss functions compared to cross-entropy loss. P.S. L2 and L1 losses are generally used for regression, but this is a classification problem.
-A:
+A: L1 and L2 loss functions perform poorly (accuracy of ~ 0.12) compared to the cross entropy (accuracy of ~0.62)
+
+Loss Function      Training Accuracy        Testing Accuracy
+-----------------------------------------------------
+Cross Entropy      0.613417                 0.627700
+L1                 0.106300                 0.103900
+L2                 0.131333                 0.127700
+
 
 3.2.1 Question
 Q: How well does your network perform on the CIFAR dataset?
-A:
+A: Terrible! The accuracy on training and testing data is 0.197540, and 0.196600, respectively.
