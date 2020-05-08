@@ -1,18 +1,51 @@
 2.2.1 Question
 Q: Why might we be interested in both training accuracy and testing accuracy? What do these two numbers tell us about our current model?
-A:
+A: The trainig accuracy is the accuracy of the model on the data it trained on, we use this during development to tune the model to achieve highest training accuracy, but we never tune the model on testing data, to avoid over-fitting/under-fitting. The testing accuracy determines the model's accuracy on previously unseen data, and is a symbol of how the model can do in the real world. In other words, too big a difference between the training accuracy and testing accuracy can show that the model is over-fitting (under-fitting), if the training accuracy is larger (smaller) that the testing accuracy. 
 
 2.2.2 Question
 Q: Try varying the model parameter for learning rate to different powers of 10 (i.e. 10^1, 10^0, 10^-1, 10^-2, 10^-3) and training the model. What patterns do you see and how does the choice of learning rate affect both the loss during training and the final model accuracy?
-A:
+A: As table below shows, the learning rate 0.01 provides the highest accuracy, both increasing or decreasing it drastically reduce the accuracy, and increase the loss. That is because if the learning rate is too high, it changes drastically with every round, and if it's too small it either gets stuck in a local mimima or needs a tremendous number of rounds to improve.
+
+Rate        Training Accuracy        Testing Accuracy        Avg. Loss
+----------------------------------------------------------------------
+10^1        0.098717                 0.098000                -nan
+10^0        0.098717                 0.098000                -nan
+10^-1       0.098717                 0.098000                2.97
+10^-2       0.818300                 0.824000                1.1
+10^-3       0.636833                 0.647700                1.8
+10^-4       0.125733                 0.127900                2.24
+
+
 
 2.2.3 Question
 Q: Try varying the parameter for weight decay to different powers of 10: (10^0, 10^-1, 10^-2, 10^-3, 10^-4, 10^-5). How does weight decay affect the final model training and test accuracy?
-A:
+A: The accuracy increases by reducing the weight decay until 10^-3, and slightly decreases after that. The weight decay of 10^-3 yeilds the highest testing accuracy.
+
+Rate        Training Accuracy        Testing Accuracy
+-----------------------------------------------------
+10^0        0.641033                 0.646500
+10^-1       0.775750                 0.779400
+10^-2       0.819967                 0.825400
+10^-3       0.818717                 0.824600
+10^-4       0.818400                 0.824100
+10^-5       0.818300                 0.824000
+
+
 
 2.3.1 Question
 Q: Currently the model uses a logistic activation for the first layer. Try using all the other activation functions we programmed. How well do they perform? What's best?
 A:
+
+Activation  Training Accuracy        Testing Accuracy
+-----------------------------------------------------
+Linear      0.                 0.
+Logistic    0.                 0.
+Tanh        0.                 0.
+ReLU        0.                 0.
+LReLU       0.                 0.
+SoftMax     0.                 0.
+
+
 
 2.3.2 Question
 Q: Using the same activation, find the best (power of 10) learning rate for your model. What is the training accuracy and testing accuracy?

@@ -259,7 +259,7 @@ double l2_loss(const Matrix &y, const Matrix &p) {
     }
   }
 
-  return sum;
+  return sum / y.rows;
 }
 
 // Calculate the L1 loss for a set of predictions
@@ -276,7 +276,7 @@ double l1_loss(const Matrix &y, const Matrix &p) {
     }
   }
 
-  return sum;
+  return sum / y.rows;
 }
 
 // Calculate the loss for a set of predictions
